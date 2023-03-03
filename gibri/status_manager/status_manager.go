@@ -33,10 +33,12 @@ type SessionStatus struct {
 type StatusManager interface {
 	status.Publisher
 	BusyStatus() busystatus.BusyStatus
-	SetBusyStatus(busystatus.BusyStatus)
-	HealthStatus() healthstatus.HealthStatus
-	OverallHealth() healthstatus.OverallHealth
 	OverallStatus() OverallStatus
+	UpdateHealth(
+		componentName string,
+		healthStatus healthstatus.HealthStatus,
+		detail string,
+	)
 }
 
 type statusManager struct {
