@@ -1,35 +1,40 @@
 package state
 
-type State int
+type State string
 
 const (
-	StartingUp State = iota
-	Running
-	Finished
-	FailedToJoinCall
-	ChromeHung
-	NoMediaReceived
-	ICEFailed
+	StartingUp       State = "starting up"
+	Running          State = "running"
+	Finished         State = "finished"
+	FailedToJoinCall State = "failed to join call"
+	ChromeHung       State = "chrome hung"
+	NoMediaReceived  State = "no media received"
+	ICEFailed        State = "ICE failed"
+	Undefined        State = "undefined"
 )
 
 func (c State) String() string {
-	switch c {
-	case StartingUp:
-		return "starting up"
-	case Running:
-		return "running"
-	case Finished:
-		return "finished"
-	case FailedToJoinCall:
-		return "failed to join call"
-	case ChromeHung:
-		return "chrome hung"
-	case NoMediaReceived:
-		return "no media received"
-	case ICEFailed:
-		return "ICE failed"
+	return string(c)
+}
+
+func FromString(s string) State {
+	switch s {
+	case StartingUp.String():
+		return StartingUp
+	case Running.String():
+		return Running
+	case Finished.String():
+		return Finished
+	case FailedToJoinCall.String():
+		return FailedToJoinCall
+	case ChromeHung.String():
+		return ChromeHung
+	case NoMediaReceived.String():
+		return NoMediaReceived
+	case ICEFailed.String():
+		return ICEFailed
 	default:
-		return "undefined"
+		return Undefined
 	}
 }
 
